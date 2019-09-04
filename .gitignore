@@ -1,0 +1,3 @@
+rest_api_storage/media/**
+**/__pycache__/**
+**/*.pyc
