@@ -1,8 +1,9 @@
 from rest_framework.serializers import (ModelSerializer,
-                                        HyperlinkedIdentityField,
+                                        ImageField,
                                         IntegerField,
                                         CharField,
-                                        Serializer)
+                                        Serializer,
+                                        HyperlinkedIdentityField)
 from .models import Image
 
 
@@ -11,18 +12,13 @@ class ImageGetSerializer(Serializer):
     size = IntegerField(default=0)
 
 
-class ImageListSerializer(ModelSerializer):
-    url = HyperlinkedIdentityField(
-                                   lookup_field='id',
-                                   view_name='image_detail'
-    )
+class ImageSerializer(ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ('date', 'place', 'url')
+        fields = ('id', 'date', 'place', 'image')
 
 
-class ImageDetailSerializer(ModelSerializer):
-    class Meta:
-        model = Image
-        fields = ('date', 'place', 'url')
+class ImageSaveStorageSerializer(Serializer):
+    img = ImageField()
+    place = CharField(max_length=50)

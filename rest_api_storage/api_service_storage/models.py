@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from uuid import uuid4
 
 
 def upload_image(instance, filename):
