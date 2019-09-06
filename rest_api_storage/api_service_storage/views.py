@@ -2,6 +2,17 @@ from .serializers import ImageGetSerializer, ImageSerializer
 from .models import Image
 from rest_framework import generics, views
 from rest_framework.response import Response
+from django.shortcuts import redirect
+
+
+def redirect_service(request):
+    return redirect('info')
+
+
+class InfoService(views.APIView):
+    def get(self, request
+            ):
+        return Response({'get': 'service/photos/', 'post': 'service/photo/'}, status=200)
 
 
 class ImagesListView(generics.ListAPIView):

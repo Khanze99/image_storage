@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'rest_api_storage.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': '-',
-        'USER': '-',
-        'PASSWORD': '-',
+        'NAME': 'api_storage_clb',
+        'USER': 'admin',
+        'PASSWORD': 'ConeForest1928',
         'HOST': '0.0.0.0',
         'PORT': 5432
     }
