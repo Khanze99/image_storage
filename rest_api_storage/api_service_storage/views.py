@@ -24,7 +24,8 @@ class ImageDetailView(generics.RetrieveAPIView):
 class ImageSaveStorage(views.APIView):
     def post(self, request):
         data = request.data
-        obj = Image.objects.create(image=request.FILES['image'], place=data['place'])
+        print(data)
+        obj = Image.objects.create(img=request.FILES['img'], place=data['place'])
         return Response(status=200)
 
 

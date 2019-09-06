@@ -16,7 +16,7 @@ class ImageSerializer(ModelSerializer):
 
     class Meta:
         model = Image
-        fields = ('id', 'date', 'place', 'image')
+        fields = ('id', 'date', 'place', 'img')
 
 
 class ImageSaveStorageSerializer(Serializer):

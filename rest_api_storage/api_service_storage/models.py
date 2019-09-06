@@ -4,12 +4,14 @@ from uuid import uuid4
 
 
 def upload_image(instance, filename):
+    details_name = filename.split('.')
+    filename = str(uuid4()) + '.' + details_name[1]
     return 'images/{}'.format(filename)
 
 
 class Image(models.Model):
     place = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to=upload_image, blank=True)
+    img = models.ImageField(upload_to=upload_image, blank=True)
     date = models.DateField(default=timezone.now)
 
     def __str__(self):
