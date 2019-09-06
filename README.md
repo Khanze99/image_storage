@@ -8,8 +8,8 @@
 
 
 1. Download zip/clone repository
-2. Create virtualenv with python3 (virtualenv -p python3 service-api)
-3. Activate virtualenv source service-api/bin/activate
+2. Create virtualenv with python3 (virtualenv -p python3 venv)
+3. Activate virtualenv source venv/bin/activate
 4. pip3 install -r requirements.txt (install required packages)
 5. cd rest_api_storage
 6. python3 manage.py migrate
