@@ -16,7 +16,7 @@ services:
       - POSTGRES_USER='-'
       - POSTGRES_PASSWORD='-'
       - POSTGRES_DB='-'
-    command: gunicorn --bind 0.0.0.0:8000 rest_api_storage.wsgi
+    command: ./bin/gunicorn_start.sh
     ports:
       - "8000:8000"
     depends_on:
