@@ -2,3 +2,7 @@ rest_api_storage/media/**
 **/__pycache__/**
 **/*.pyc
 test.txt
+venv
+.idea
+**/error.log
+**/static

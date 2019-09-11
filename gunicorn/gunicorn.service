@@ -1,0 +1,11 @@
+# add in /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=khanze
+Group=khanze
+WorkingDirectory=/home/khanze/image_storage/rest_api_storage
+ExecStart=/home/khanze/image_storage/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/khanze/image_storage/rest_api_storage/rest_api_storage.sock rest_api_storage.wsgi:application

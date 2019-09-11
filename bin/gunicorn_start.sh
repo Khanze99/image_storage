@@ -1,1 +1,1 @@
-exec gunicorn -c "/home//khanze/PycharmProjects/cleverbots_rest_api_image_storage/image_storage/rest_api_storage/gunicorn_config.py" rest_api_storage.wsgi
+cd rest_api_storage && exec gunicorn -c "/home//khanze/image_storage/rest_api_storage/gunicorn_config.py" rest_api_storage.wsgi
