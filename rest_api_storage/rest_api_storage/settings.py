@@ -83,7 +83,8 @@ DATABASES = {
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'HOST': 'db',
 
-}}
+    }
+}
 
 
 # Password validation
