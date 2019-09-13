@@ -1,1 +1,2 @@
-cd rest_api_storage && exec gunicorn -c "/home//khanze/image_storage/rest_api_storage/gunicorn_config.py" rest_api_storage.wsgi
+#!/bin/bash
+cd rest_api_storage && exec gunicorn -c "/project/rest_api_storage/gunicorn_config.py" rest_api_storage.wsgi
