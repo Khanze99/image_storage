@@ -3,30 +3,36 @@ version: '3'
 services:
   db:
     image: postgres:10
-    environment:
-      - POSTGRES_USER='-'
-      - POSTGRES_PASSWORD='-'
-      - POSTGRES_DB='-'
+    env_file:
+      - ./bin/database_env
     ports:
       - "5432:5432"
+    networks:
+      - db_network
+    volumes:
+      - db_volume:/var/lib/postgresql/data
 
   web_service:
     restart: always
     container_name: web_service
     build: .
+    env_file:
+      - ./bin/database_env
     command: sh -c "cd rest_api_storage && gunicorn rest_api_storage.wsgi --bind 0.0.0.0:8000"
-    environment:
-      - POSTGRES_USER='-'
-      - POSTGRES_PASSWORD='-'
-      - POSTGRES_DB='-'
     depends_on:
       - db
     links:
       - db:db
     expose:
       - "8000"
-    ports:
-      - "8000:8000"
+    networks:
+      - nginx_network
+      - db_network
+    volumes:
+      - .:/project/image_storage
+      - static_volume:/project/image_storage/rest_api_storage/static  # <-- bind the static volume
+      - media_volume:/project/image_storage/rest_api_storage/media  # <-- bind the media volume
+
 
   nginx:
     build: ./nginx
@@ -36,3 +42,19 @@ services:
       - web_service
     volumes:
       - ./nginx:/etc/nginx/
+      - static_volume:/usr/src/static  # <-- bind the static volume
+      - media_volume:/usr/src/media  # <-- bind the media volume
+    networks:
+      - nginx_network
+      - db_network
+
+networks:
+  nginx_network:
+    driver: bridge
+  db_network:
+    driver: bridge
+
+volumes:
+  db_volume:
+  static_volume:
+  media_volume:

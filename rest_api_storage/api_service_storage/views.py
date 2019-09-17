@@ -10,8 +10,7 @@ def redirect_service(request):
 
 
 class InfoService(views.APIView):
-    def get(self, request
-            ):
+    def get(self, request):
         return Response({'get': 'service/photos/', 'post': 'service/photo/'}, status=200)
 
 
@@ -38,6 +37,3 @@ class ImageSaveStorage(views.APIView):
         print(data)
         obj = Image.objects.create(img=request.FILES['img'], place=data['place'])
         return Response(status=200)
-
-
-

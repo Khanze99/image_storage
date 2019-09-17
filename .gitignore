@@ -6,3 +6,4 @@ venv
 .idea
 **/error.log
 **/static
+/bin/database_env
