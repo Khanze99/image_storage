@@ -7,3 +7,5 @@ venv
 **/error.log
 **/static
 /bin/database_env
+media
+static

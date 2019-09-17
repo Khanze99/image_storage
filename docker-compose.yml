@@ -29,9 +29,8 @@ services:
       - nginx_network
       - db_network
     volumes:
-      - .:/project/image_storage
-      - static_volume:/project/image_storage/rest_api_storage/static  # <-- bind the static volume
-      - media_volume:/project/image_storage/rest_api_storage/media  # <-- bind the media volume
+      - ./static:/project/rest_api_storage/static  # <-- bind the static volume
+      - ./media:/project/rest_api_storage/media  # <-- bind the media volume
 
 
   nginx:
@@ -42,8 +41,8 @@ services:
       - web_service
     volumes:
       - ./nginx:/etc/nginx/
-      - static_volume:/usr/src/static  # <-- bind the static volume
-      - media_volume:/usr/src/media  # <-- bind the media volume
+      - ./static:/usr/src/static  # <-- bind the static volume
+      - ./media:/usr/src/media  # <-- bind the media volume
     networks:
       - nginx_network
       - db_network
