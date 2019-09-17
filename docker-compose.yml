@@ -55,5 +55,3 @@ networks:
 
 volumes:
   db_volume:
-  static_volume:
-  media_volume:
