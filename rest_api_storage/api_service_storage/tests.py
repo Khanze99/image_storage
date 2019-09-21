@@ -8,13 +8,13 @@ factory = APIRequestFactory()
 request_to_info_redirect = factory.get('/')
 
 # ------------------------- request post to http://localhost/service/photo/
-file = open('/test/test_image_1.jpg', mode='rb')
+file = open('api_service_storage/test/test_image_1.jpg', mode='rb')
 data = {'place': 'nissan'}
 files = {'img': file}
 post_request = factory.post('/service/photo/', files=files, data=data)
 file.close()
 
-file_2 = open('/test/test_image_2.jpg', mode='rb')
+file_2 = open('api_service_storage/test/test_image_2.jpg', mode='rb')
 data = {'place': 'human'}
 files = {"img": file_2}
 post_request_2 = factory.post('/service/photo/', files=files, data=data)
