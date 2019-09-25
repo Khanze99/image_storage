@@ -1,35 +1,21 @@
-from django.test import TestCase
-from rest_framework.test import APIRequestFactory
-from datetime import datetime
-import os
-
-# ------------------------- request get to http://localhost/
-factory = APIRequestFactory()
-request_to_info_redirect = factory.get('/')
-
-# ------------------------- request post to http://localhost/service/photo/
-file = open('api_service_storage/test/test_image_1.jpg', mode='rb')
-data = {'place': 'nissan'}
-files = {'img': file}
-post_request = factory.post('/service/photo/', files=files, data=data)
-file.close()
-
-file_2 = open('api_service_storage/test/test_image_2.jpg', mode='rb')
-data = {'place': 'human'}
-files = {"img": file_2}
-post_request_2 = factory.post('/service/photo/', files=files, data=data)
-file_2.close()
+from rest_framework.test import APIRequestFactory, APITestCase, URLPatternsTestCase
+from rest_framework import status
+from django.urls import reverse, path, include
+from api_service_storage.models import Image
 
 
-# ------------------------- request get to http://localhost/service/photos/
+class Test(APITestCase, URLPatternsTestCase):
+    urlpatterns = [
+        path('api/', include('rest_api_storage.urls'))
+    ]
 
-get_request = factory.get('/service/photos/')
+    def test_info(self):
+        url = reverse('info')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.json(), {'get': 'service/photos/', 'post': 'service/photo/'})
 
-
-# ------------------------- request get to http://localhost/service/photos/ with filter time
-
-date = datetime.now().date().strftime('%Y-%m-%d')
-get_request_filter = factory.get('/service/photos/', params={'date': date})
-
-
-
+    def test_list(self):
+        url = reverse('photos')
+        response = self.client.get(url)
+        self.assertEqual(response.json(), [])

@@ -1,4 +1,4 @@
-from .serializers import ImageGetSerializer, ImageSerializer
+from .serializers import ImageSerializer
 from .models import Image
 from rest_framework import generics, views
 from rest_framework.response import Response
@@ -34,6 +34,5 @@ class ImageDetailView(generics.RetrieveAPIView):
 class ImageSaveStorage(views.APIView):
     def post(self, request):
         data = request.data
-        print(data)
-        obj = Image.objects.create(img=request.FILES['img'], place=data['place'])
+        Image.objects.create(img=request.FILES['img'], place=data['place'])
         return Response(status=200)
