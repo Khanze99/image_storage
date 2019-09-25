@@ -9,6 +9,15 @@ class Test(APITestCase, URLPatternsTestCase):
         path('api/', include('rest_api_storage.urls'))
     ]
 
+    def test_post_photo(self):
+        url = reverse('photo')
+        image = open('./api_service_storage/test/test_image_1.jpg', mode="rb")
+        post_data = {'place': 'test1', 'img': image}
+        response = self.client.post(url, post_data)
+        image.close()
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Image.objects.get(id=1).place, 'test1')
+
     def test_info(self):
         url = reverse('info')
         response = self.client.get(url)

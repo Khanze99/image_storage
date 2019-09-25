@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': 'db',
         'TEST': {
             'NAME': 'test_db'
-                 }
+        }
 
     }
 }
