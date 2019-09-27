@@ -14,10 +14,9 @@ class Test(APITestCase, URLPatternsTestCase):
 
     def test_post_photo(self):
         url = reverse('photo')
-        image = open('./api_service_storage/test/test_image_1.jpg', mode="rb")
-        post_data = {'place': 'test1', 'img': image}
-        response = self.client.post(url, post_data)
-        image.close()
+        with open('./api_service_storage/test/test_image_1.jpg', mode="rb") as file:
+            post_data = {'place': 'test1', 'img': file}
+            response = self.client.post(url, post_data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_info(self):
